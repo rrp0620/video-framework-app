@@ -10,10 +10,9 @@ st.set_page_config(page_title="Framework Builder", page_icon="🧠")
 st.title("🧠 Video to Process Builder")
 
 # 2. API KEY SETUP
-# This looks for the key in Streamlit Secrets (Cloud) or Environment (Local)
 api_key = st.secrets.get("GEMINI_API_KEY") 
 if not api_key:
-    # Fallback for local testing if you didn't set up secrets.toml yet
+    # Fallback for local testing if secrets.toml isn't set
     api_key = os.getenv("GEMINI_API_KEY")
 
 if not api_key:
@@ -72,9 +71,3 @@ if st.button("🚀 Build My Framework") and url and user_context:
         """
         
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-        response = model.generate_content([gemini_file, prompt])
-        
-        st.markdown(response.text)
-        
-    except Exception as e:
-        st.error(f"Something went wrong: {e}")
