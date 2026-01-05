@@ -12,7 +12,7 @@ st.title("🧠 Video to Process Builder")
 # 2. API KEY SETUP
 api_key = st.secrets.get("GEMINI_API_KEY") 
 if not api_key:
-    # Fallback for local testing if secrets.toml isn't set
+    # Fallback for local testing
     api_key = os.getenv("GEMINI_API_KEY")
 
 if not api_key:
@@ -71,3 +71,9 @@ if st.button("🚀 Build My Framework") and url and user_context:
         """
         
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+        response = model.generate_content([gemini_file, prompt])
+        
+        st.markdown(response.text)
+        
+    except Exception as e:
+        st.error(f"Something went wrong: {e}")
