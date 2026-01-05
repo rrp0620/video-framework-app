@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+st.write(f"Debug: Google Library Version is {genai.__version__}")
 import time
 import os
 import tempfile
@@ -70,4 +71,5 @@ if st.button("🚀 Build My Framework") and uploaded_file and user_context:
         
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
 
