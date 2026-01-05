@@ -63,10 +63,11 @@ if st.button("🚀 Build My Framework") and uploaded_file and user_context:
         2. THE PERSONALIZED PLAN (Step-by-step for this user)
         """
         
-        model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+        model = genai.GenerativeModel(model_name="gemini-1.5-pro")
         response = model.generate_content([gemini_file, prompt])
         
         st.markdown(response.text)
         
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
